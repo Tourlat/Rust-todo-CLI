@@ -1,5 +1,5 @@
-use todo_list_rust::*;
-use clap::Parser;
+use rust_todolist::*;
+use clap::{Parser, Subcommand};
 
 
 #[derive(Parser)]
@@ -9,7 +9,14 @@ struct Args {
   command: Option<Action>,
 
 }
-
+#[derive(Subcommand)]
+pub enum Action {
+    Add { task: String },
+    Remove { id: u32 },
+    Done { id: u32 },
+    Undone { id: u32 },
+    List,
+}
 fn main() {
     let args = Args::parse();
 
@@ -38,11 +45,8 @@ fn main() {
         let task_list = load_todo_list().unwrap();
         display_todo_list(&task_list);
       },
-      Some(Action::Help) => {
-        help();
-      },
       _ => {
-        help();
+        display_help();
       }
 
     }

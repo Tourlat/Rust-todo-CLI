@@ -1,4 +1,3 @@
-use clap::Subcommand;
 use serde::{Deserialize, Serialize};
 use serde_json;
 use std::fs::{self, OpenOptions};
@@ -104,19 +103,11 @@ pub fn display_todo_list(list: &TodoList) {
     }
 }
 
-pub fn help() {
+pub fn display_help() {
     println!("Usage: todo [add|remove|done|undone|list] [task|id|None]");
 }
 
-#[derive(Subcommand)]
-pub enum Action {
-    Add { task: String },
-    Remove { id: u32 },
-    Done { id: u32 },
-    Undone { id: u32 },
-    List,
-    Help,
-}
+
 
 
 #[cfg(test)]
