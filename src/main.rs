@@ -13,7 +13,7 @@ struct Args {
 pub enum Action {
     Add { task: String },
     Remove { id: u32 },
-    Done { id: u32 },
+    Complete { id: u32 },
     Undone { id: u32 },
     List,
 }
@@ -31,7 +31,7 @@ fn main() {
         remove_todo(&mut task_list, *id);
         save_todo_list(task_list).unwrap();
       },
-      Some(Action::Done{id}) => {
+      Some(Action::Complete{id}) => {
         let mut task_list = load_todo_list().unwrap();
         change_todo_compeleted_value(&mut task_list, *id, true);
         save_todo_list(task_list).unwrap();
@@ -45,9 +45,9 @@ fn main() {
         let task_list = load_todo_list().unwrap();
         display_todo_list(&task_list);
       },
-      _ => {
+      None => {
         display_help();
-      }
+      },
 
     }
 }
