@@ -11,7 +11,7 @@ This project use the following crates:
 1. Clone the repository
 
 ```
-$ git@github.com:Tourlat/rust-todo-CLI.git
+$ git clone git@github.com:Tourlat/rust-todo-CLI.git
 ```
 
 2. Run `cargo run` in the project root directory with the following arguments:
