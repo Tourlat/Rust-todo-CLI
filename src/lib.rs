@@ -93,6 +93,14 @@ pub fn add_todo(list: &mut TodoList, todo_content: &str) {
     list.tasks.push(task);
 }
 
+pub fn edit_todo_task(list: &mut TodoList, id: u32, new_description: &str) {
+    if let Some(task) = list.tasks.iter_mut().find(|task: &&mut Todo| task.id == id) {
+        task.description = new_description.to_string();
+    } else {
+        println!("Todo task with ID {} not found", id);
+    }
+}
+
 pub fn display_todo_list(list: &TodoList) {
     for task in list.tasks.iter() {
         if task.completed {
@@ -139,6 +147,15 @@ mod tests {
     }
 
     #[test]
+    fn test_change_todo_compeleted_value_false() {
+        let mut list = TodoList::new();
+        add_todo(&mut list, "Test task");
+        change_todo_compeleted_value(&mut list, 1, true);
+        change_todo_compeleted_value(&mut list, 1, false);
+        assert_eq!(list.tasks[0].completed, false);
+    }
+
+    #[test]
     fn test_adjust_ids() {
         let mut list = TodoList::new();
         add_todo(&mut list, "Test task 1");
@@ -147,5 +164,13 @@ mod tests {
         remove_todo(&mut list, 2);
         adjust_ids(&mut list);
         assert_eq!(list.tasks[1].id, 2);
+    }
+
+    #[test]
+    fn test_edit_todo_task() {
+        let mut list = TodoList::new();
+        add_todo(&mut list, "Test task");
+        edit_todo_task(&mut list, 1, "Edited task");
+        assert_eq!(list.tasks[0].description, "Edited task");
     }
 }
