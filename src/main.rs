@@ -39,7 +39,7 @@ fn main() {
         let mut task_list = load_todo_list().unwrap();
         change_todo_compeleted_value(&mut task_list, *id, true);
         save_todo_list(task_list).unwrap();
-        println!("Task with ID {} ishas been completed", id);
+        println!("Task with ID {} has been completed", id);
       },
       Some(Action::Undone{id}) => {
         let mut task_list = load_todo_list().unwrap();

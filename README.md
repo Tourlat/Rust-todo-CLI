@@ -20,7 +20,7 @@ $ git clone git@github.com:Tourlat/rust-todo-CLI.git
     - `delete {todo id}` to delete a todo item.
     - `complete {todo id}` to mark a todo item as complete.
     - `undone {todo id}` to mark a todo item as undone.
-    - `edit {todo id, todo item} 'new todo item'` to edit a todo item.
+    - `edit {todo id} 'new todo item'` to edit a todo item.
 
 ## Examples
  
